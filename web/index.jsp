@@ -15,7 +15,6 @@
         <h1>Tervetuloa muistilistapalveluun!</h1>
         <h3> ${viesti} </h3>
         
-        
         <form name="kirjaudu sisään"
               action="${pageContext.request.contextPath}/Kirjautumistarkistus"
               method="post">

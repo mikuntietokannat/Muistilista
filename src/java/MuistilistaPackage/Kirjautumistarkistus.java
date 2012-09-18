@@ -54,7 +54,7 @@ public class Kirjautumistarkistus extends HttpServlet {
         if (!loytyyko) {
             request.setAttribute("viesti", "Tunnusta ei löydy, oletko rekisteröitynyt?");
         
-            RequestDispatcher dispatcher = request.getRequestDispatcher("uusikayttaja.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);           //tunnusta ei löydy, rekisteröidy
         }    
     }

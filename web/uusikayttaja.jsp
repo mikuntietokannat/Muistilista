@@ -21,7 +21,7 @@
               method="post">
             Tunnus: <input type="text" name="tunnus" /> <br/>
             Salasana: <input type="text" name="salasana" /> <br/>
-            <input type="submit" value="Rekisteröidy" />
+            <input type="submit" value="Luo tunnus" />
         </form>
     </body>
 </html>
