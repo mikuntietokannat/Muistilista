@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package MuistilistaPackage;
 
 import java.io.Serializable;
@@ -14,6 +10,7 @@ import javax.persistence.Id;
 /**
  *
  * @author miimaija
+ * OBSOLETE!?!?!? lisätään tehtävän sisälle
  */
 @Entity
 public class Tarkeys implements Serializable {

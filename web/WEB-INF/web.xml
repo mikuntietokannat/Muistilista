@@ -20,6 +20,10 @@
         <servlet-name>Kirjautumistarkistus</servlet-name>
         <servlet-class>MuistilistaPackage.Kirjautumistarkistus</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Lisaatehtava</servlet-name>
+        <servlet-class>MuistilistaPackage.Lisaatehtava</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListaServlet</servlet-name>
         <url-pattern>/ListaServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Kirjautumistarkistus</servlet-name>
         <url-pattern>/Kirjautumistarkistus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Lisaatehtava</servlet-name>
+        <url-pattern>/Lisaatehtava</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package MuistilistaPackage;
 
 import java.util.List;
@@ -44,6 +40,10 @@ public class Tietokanta {
     public List<Kayttaja> getKayttajat() {
         EntityManager em = getEntityManager();
         return em.createQuery("SELECT u FROM Kayttaja u").getResultList();
+    }
+    
+    public Kayttaja tunnistaKayttaja(String tunnus, String salasana) {
+        return null;  // datahaku TEE!!!!!!!!!!!!!!!!!!!!!!!!!11
     }
     
     public List<Tehtava> getTehtavat() {

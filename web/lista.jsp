@@ -16,9 +16,26 @@
         <h1>Tehtävälista</h1>
         <h3> ${viesti} </h3>
         
+        <form name="muistiinpano"
+              action="${pageContext.request.contextPath}/uusitehtava"
+              method="post">
+            <input type="submit" value="uusi muistio" />
+        </form>
+       
+       //// TOIMIIKO??       
+       <form name="muistiinpano"
+              action="$pageContext.forward("uusitehtava.jsp")>
+            <input type="submit" value="uusi muistio" />
+        </form>
+        
+       <%pageContext.forward("uusitehtava.jsp");%>   
+        
+        ////////
+        
         <c:forEach var="kayttaja" items="${lista}">
             ${kayttaja.tunnus} <br/>
         </c:forEach>
             
     </body>
 </html>
+

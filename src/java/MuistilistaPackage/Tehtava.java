@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package MuistilistaPackage;
 
 import java.io.Serializable;
@@ -30,7 +26,7 @@ public class Tehtava implements Serializable {
     private Long userid;        //fkey
     
     @Column
-    private int tarkeys;        //fkey
+    private int tarkeys;        
     
     @Column
     private String kuvaus;

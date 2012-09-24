@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package MuistilistaPackage;
 
 import java.io.IOException;
@@ -12,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,12 +36,15 @@ public class Kirjautumistarkistus extends HttpServlet {
            if (tunnuslista.get(i).getTunnus().equals(tunnus)) {
                if (tunnuslista.get(i).getSalasana().equals(salasana)) {
                    request.setAttribute("viesti", "Hei "+ tunnus + "!");
-                   request.setAttribute("kayttajanyt", tunnuslista.get(i));
+                   
+                   HttpSession session = request.getSession(true);
+                   session.setAttribute("kayttaja_id", tunnuslista.get(i).getId());               //Siirrä tietokantaan
+                   
                    request.getRequestDispatcher("/tehtavat").forward(request, response);  //tunnus löytyy tietokannasta ja salasana täsmää, jatketaan eteenpäin
-                   loytyyko=true;
+                   loytyyko=true;                                                         //sessio on käyttäjä id
                }
                else {
-                   request.setAttribute("viesti", "Väärä salasana!");
+                   request.setAttribute("viesti", "Väärä käyttäjätunnus tai salasana");
                    RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                    dispatcher.forward(request, response);           //Väärä salasana, kirjaudu uudestaan
                    loytyyko=true;
