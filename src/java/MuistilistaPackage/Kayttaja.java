@@ -36,6 +36,10 @@ public class Kayttaja implements Serializable {
         return userid;
     }
     
+    public Kayttaja getKayttaja() {
+        return this;
+    }
+    
     public String getTunnus() {
         return tunnus;
     }

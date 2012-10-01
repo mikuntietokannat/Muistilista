@@ -10,15 +10,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Humhum? tämä ei näy?</title>
+        <title>Muistio</title>
     </head>
     <body>
-        <h1>Luo uusi muistiinpano</h1>
+        <h1>Luo uusi muistio</h1>
         <form name="lisaaKayttaja"
               action="${pageContext.request.contextPath}/lisaaTehtava"
               method="post">
-            Nimi: <input type="text" name="nimi" /> <br/>
-            Kategoria: <input type="text" name="kategoria" /> <br/>
+            Nimi:        <input style="margin-left: 5em" type="text" name="nimi" /> <br/>
+            Kategoria:   <input type="text" name="kategoria" /> <br/>
             Tärkeysaste: <input type="text" name="tärkeysaste" /> <br/>
             <select name="kategorid">
                     <c:forEach var="Kategoria" items="${Kategoria}">

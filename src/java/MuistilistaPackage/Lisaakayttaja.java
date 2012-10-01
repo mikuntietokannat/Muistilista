@@ -16,52 +16,40 @@ import java.util.ListIterator;
  *
  * @author miimaija
  */
-public class Lisaakayttaja extends HttpServlet {
+public class Lisaakayttaja extends Muistilistatoiminnot {
     Tietokanta lisaaja= new Tietokanta();
     boolean vapaa=true;
 
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //kutsutaan "/lisaaKayttaja" liitteellä
        
+        vapaa=true;
         String tunnus=request.getParameter("tunnus");
         String salasana=request.getParameter("salasana");
         
         if (tunnus.equals("") || tunnus.equals(" ") || tunnus.equals("  ") || salasana.equals("") || salasana.equals(" ") || salasana.equals("   ")) {
             request.setAttribute("viesti", "Tunnus tai salasana ei kelvollinen, yritä uudelleen");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("uusikayttaja.jsp");
-            dispatcher.forward(request, response);
+            sivuSiirto("uusikayttaja.jsp", request, response);
             return;
-        }
-        
-        
+        }    
         List<Kayttaja> tarkistus=lisaaja.getKayttajat();      //Tarkistaa onko tunnus vapaa
         for (int i=0 ; tarkistus.size()>i; i++) {
-            if (tarkistus.get(i).equals(tunnus)) {
+            if (tarkistus.get(i).getTunnus().equals(tunnus)) {
                 vapaa=false;
                 break;
             }
         }
         if (vapaa) {
-            lisaaja.lisaaKayttaja(new Kayttaja(tunnus, salasana));
-            
+            lisaaja.lisaaKayttaja(new Kayttaja(tunnus, salasana));         
             request.setAttribute("viesti", "Kirjaudu sisään uudella tunnuksellasi");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-            dispatcher.forward(request, response);
+            sivuSiirto("index.jsp", request, response);
             return;
         }
         if (!vapaa) {
             request.setAttribute("viesti", "Käyttäjätunnus varattu");
-        
-            RequestDispatcher dispatcher = request.getRequestDispatcher("uusikayttaja.jsp");
-            dispatcher.forward(request, response);
+            sivuSiirto("uusikayttaja.jsp", request, response);
+                    
         }  
          
     }

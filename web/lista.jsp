@@ -10,27 +10,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Muistio</title>
     </head>
     <body>
         <h1>Tehtävälista</h1>
         <h3> ${viesti} </h3>
         
-        <form name="muistiinpano"
-              action="${pageContext.request.contextPath}/uusitehtava"
-              method="post">
-            <input type="submit" value="uusi muistio" />
-        </form>
-       
-       //// TOIMIIKO??       
-       <form name="muistiinpano"
-              action="$pageContext.forward("uusitehtava.jsp")>
+        <form name="uusi muistio"
+              action=<%pageContext.forward("uusitehtava.jsp");%> 
             <input type="submit" value="uusi muistio" />
         </form>
         
-       <%pageContext.forward("uusitehtava.jsp");%>   
+        <br/> 
         
-        ////////
         
         <c:forEach var="kayttaja" items="${lista}">
             ${kayttaja.tunnus} <br/>
@@ -39,3 +31,18 @@
     </body>
 </html>
 
+   <!--     
+   
+        <form name="muistiinpano"
+              action="${pageContext.request.contextPath}/Lisaatehtava"
+              method="post">
+              <input type="submit" value="uusi muistio" />
+        </form>
+              
+        <form name="uusi muistio"
+            action=$pageContext.forward(uusitehtava.jsp)>
+            <input type="submit" value="uusi muistio" />
+        </form>
+              
+        <a href="http://localhost:8080//examples/jsp//login.jsp">view</a>;       
+    -->

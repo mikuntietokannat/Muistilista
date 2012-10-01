@@ -24,6 +24,10 @@
         <servlet-name>Lisaatehtava</servlet-name>
         <servlet-class>MuistilistaPackage.Lisaatehtava</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Muistilistatoiminnot</servlet-name>
+        <servlet-class>MuistilistaPackage.Muistilistatoiminnot</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListaServlet</servlet-name>
         <url-pattern>/ListaServlet</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>Lisaatehtava</servlet-name>
         <url-pattern>/Lisaatehtava</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Muistilistatoiminnot</servlet-name>
+        <url-pattern>/Muistilistatoiminnot</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

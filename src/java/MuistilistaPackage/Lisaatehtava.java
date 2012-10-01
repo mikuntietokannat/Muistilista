@@ -16,20 +16,8 @@ import java.util.ListIterator;
  *
  * @author miimaija
  */
-public class Lisaatehtava extends HttpServlet {
-    Tietokanta lisaaja= new Tietokanta();
-    boolean vapaa=true;
-
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+public class Lisaatehtava extends Muistilistatoiminnot {
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Muistilistahommeli</title>
+        <title>Muistio</title>
     </head>
     <body>
         <h1>Tervetuloa muistilistapalveluun!</h1>

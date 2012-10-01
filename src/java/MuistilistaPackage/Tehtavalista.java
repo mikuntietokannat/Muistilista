@@ -12,32 +12,17 @@ import javax.servlet.http.HttpSession;
  *
  * @author miimaija
  */
-public class Tehtavalista extends HttpServlet {
+public class Tehtavalista extends Muistilistatoiminnot {
     Tietokanta db=new Tietokanta();
 
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //kutsutaan "/tehtavat" liitteellä
-        /*
-        Tietokanta testi=new Tietokanta();
-        testi.lisaaKayttaja(new Kayttaja("Mikko", "joku"));
-        testi.lisaaKayttaja(new Kayttaja("Esko", "Jou"));
-        request.setAttribute("lista", testi.getKayttajat());
-         */
-        HttpSession session = request.getSession(true);
-        Integer kayttajaId = (Integer) session.getAttribute("kayttaja_id");
-        
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("lista.jsp");
-        dispatcher.forward(request, response);
 
+        if (!sessiotarkistus(request, response)) {
+            return;
+        }        
+        sivuSiirto("lista.jsp", request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
