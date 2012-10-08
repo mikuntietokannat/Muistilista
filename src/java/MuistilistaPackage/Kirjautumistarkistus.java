@@ -30,7 +30,7 @@ public class Kirjautumistarkistus extends Muistilistatoiminnot {
                    //session.setAttribute("kayttaja_id", tunnuslista.get(i).getId());
                    session.setAttribute("kayttaja", tunnuslista.get(i).getKayttaja());
                    request.setAttribute("viesti", "Hei "+ tunnus + "!");
-                   sivuSiirto("/tehtavat", request, response);
+                   sivuSiirto("/muistio", request, response);
                    return;                                                 
                }
                else {

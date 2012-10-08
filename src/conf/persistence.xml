@@ -5,7 +5,7 @@
     <class>MuistilistaPackage.Kategoria</class>
     <class>MuistilistaPackage.Kayttaja</class>
     <class>MuistilistaPackage.Tarkeys</class>
-    <class>MuistilistaPackage.Tehtava</class>
+    <class>MuistilistaPackage.Muistio</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://users.cs.helsinki.fi:49856/muistilista"/>

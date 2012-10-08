@@ -12,12 +12,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author miimaija
  */
-public class Tehtavalista extends Muistilistatoiminnot {
+public class Lista extends Muistilistatoiminnot {
     Tietokanta db=new Tietokanta();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //kutsutaan "/tehtavat" liitteellä
+        //kutsutaan "/muistio" liitteellä
 
         if (!sessiotarkistus(request, response)) {
             return;

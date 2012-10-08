@@ -17,7 +17,7 @@ import java.util.ListIterator;
  * @author miimaija
  */
 public class Lisaakayttaja extends Muistilistatoiminnot {
-    Tietokanta lisaaja= new Tietokanta();
+    //Tietokanta lisaaja= new Tietokanta();
     boolean vapaa=true;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +33,7 @@ public class Lisaakayttaja extends Muistilistatoiminnot {
             sivuSiirto("uusikayttaja.jsp", request, response);
             return;
         }    
-        List<Kayttaja> tarkistus=lisaaja.getKayttajat();      //Tarkistaa onko tunnus vapaa
+        List<Kayttaja> tarkistus=db.getKayttajat();      //Tarkistaa onko tunnus vapaa
         for (int i=0 ; tarkistus.size()>i; i++) {
             if (tarkistus.get(i).getTunnus().equals(tunnus)) {
                 vapaa=false;
@@ -41,7 +41,7 @@ public class Lisaakayttaja extends Muistilistatoiminnot {
             }
         }
         if (vapaa) {
-            lisaaja.lisaaKayttaja(new Kayttaja(tunnus, salasana));         
+            db.lisaaKayttaja(new Kayttaja(tunnus, salasana));         
             request.setAttribute("viesti", "Kirjaudu sisään uudella tunnuksellasi");
             sivuSiirto("index.jsp", request, response);
             return;
@@ -49,7 +49,7 @@ public class Lisaakayttaja extends Muistilistatoiminnot {
         if (!vapaa) {
             request.setAttribute("viesti", "Käyttäjätunnus varattu");
             sivuSiirto("uusikayttaja.jsp", request, response);
-                    
+                  
         }  
          
     }

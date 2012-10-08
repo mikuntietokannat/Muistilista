@@ -13,17 +13,16 @@
         <title>Muistio</title>
     </head>
     <body>
-        <h1>Tehtävälista</h1>
+        <h1>Muistiot</h1>
         <h3> ${viesti} </h3>
         
         <form name="uusi muistio"
-              action=<%pageContext.forward("uusitehtava.jsp");%> 
-            <input type="submit" value="uusi muistio" />
+              action="${pageContext.request.contextPath}/uusitehtava.jsp">
+            <input type="submit" value="Luo uusi muistio" />
         </form>
         
         <br/> 
-        
-        
+                
         <c:forEach var="kayttaja" items="${lista}">
             ${kayttaja.tunnus} <br/>
         </c:forEach>
@@ -32,17 +31,6 @@
 </html>
 
    <!--     
+
    
-        <form name="muistiinpano"
-              action="${pageContext.request.contextPath}/Lisaatehtava"
-              method="post">
-              <input type="submit" value="uusi muistio" />
-        </form>
-              
-        <form name="uusi muistio"
-            action=$pageContext.forward(uusitehtava.jsp)>
-            <input type="submit" value="uusi muistio" />
-        </form>
-              
-        <a href="http://localhost:8080//examples/jsp//login.jsp">view</a>;       
     -->

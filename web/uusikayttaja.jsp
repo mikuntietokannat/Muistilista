@@ -19,9 +19,18 @@
         <form name="lisaaKayttaja"
               action="${pageContext.request.contextPath}/lisaaKayttaja"
               method="post">
-            Tunnus: <input type="text" name="tunnus" /> <br/>
-            Salasana: <input type="text" name="salasana" /> <br/>
+            Tunnus: <input type="text" name="tunnus" maxlength=15 /> <br/>
+            Salasana: <input type="password" name="salasana" maxlength=15 /> <br/>
             <input type="submit" value="Luo tunnus" />
         </form>
+          
+        <br/>      
+              
+        <form name="Takaisin"
+              action="${pageContext.request.contextPath}/index.jsp">
+            <input type="submit" value="Takaisin" />
+        </form>
+
+            
     </body>
 </html>

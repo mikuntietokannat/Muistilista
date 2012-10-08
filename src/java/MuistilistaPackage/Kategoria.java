@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Kategoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long kategorid;     //pkey
     
-    @Column
+    @JoinColumn
     private Long userid;        //fkey
     
     @Column
@@ -33,6 +34,11 @@ public class Kategoria implements Serializable {
     
     public Kategoria(Long userid, String nimi, Long ylakategoria) {
         this.userid=userid;this.nimi=nimi;this.ylakategoria=ylakategoria;
+    }
+    
+    //Temp, kunnes yläkategoriafunktio käyttöön
+    public Kategoria(Long userid, String nimi) {
+        this.userid=userid;this.nimi=nimi;this.ylakategoria=(long)-999;
     }
 
     public Long getId() {

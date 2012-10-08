@@ -29,7 +29,15 @@ public class Tietokanta {
         em.getTransaction().commit();
     }
     
-    public void lisaaTehtava(Tehtava uusi) {
+    public void lisaaMuistio(Muistio uusi) {
+        EntityManager em = getEntityManager();
+	
+        em.getTransaction().begin();	
+        em.persist(uusi);
+        em.getTransaction().commit();
+    }
+    
+     public void lisaaKategoria(Kategoria uusi) {
         EntityManager em = getEntityManager();
 	
         em.getTransaction().begin();	
@@ -46,9 +54,20 @@ public class Tietokanta {
         return null;  // datahaku TEE!!!!!!!!!!!!!!!!!!!!!!!!!11
     }
     
-    public List<Tehtava> getTehtavat() {
+    public List<Muistio> getTehtavat() {
         EntityManager em = getEntityManager();
         return em.createQuery("SELECT u FROM Tehtava u").getResultList();
+    }
+    
+    public Long getKategorId(String nimi) {
+        EntityManager em = getEntityManager();
+        List<Kategoria> lista=em.createQuery("SELECT u FROM Tehtava u").getResultList();
+        for (int i=0; lista.size()>i; i++) {
+            if (lista.get(i).getNimi().equalsIgnoreCase(nimi)) {
+                return lista.get(i).getId();
+            }
+        }
+        return (long)-999;    //Ei pitäisi olla mahdollista, nimi on haettu alunperin db:n kautta, joten aina löytyy
     }
 
 }

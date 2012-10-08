@@ -6,41 +6,45 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 /**
  *
  * @author miimaija
  */
 @Entity
-public class Tehtava implements Serializable {
+public class Muistio implements Serializable {
     private static final long serialVersionUID = 1L;  // tarpeellinen??
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long tehtavaid;     //pkey
+    private Long muistioid;     //pkey
     
-    @Column
+    @JoinColumn
     private Long kategorid;     //fkey
     
-    @Column
+    @JoinColumn
     private Long userid;        //fkey
     
     @Column
-    private int tarkeys;        
+    private int tarkeys;
+    
+    @Column
+    private String nimi;
     
     @Column
     private String kuvaus;
     
-    public Tehtava() {
+    public Muistio() {
         
     }
     
-    public Tehtava(long kategorid, long userid, int tarkeys, String kuvaus) {
-        this.kategorid=kategorid; this.userid=userid; this.tarkeys=tarkeys; this.kuvaus=kuvaus;
+    public Muistio(long kategorid, long userid, int tarkeys, String kuvaus, String nimi) {
+        this.kategorid=kategorid; this.userid=userid; this.tarkeys=tarkeys; this.kuvaus=kuvaus; this.nimi=nimi;
     }
 
     public Long getId() {
-        return tehtavaid;
+        return muistioid;
     }
     
     public Long getKategoria() {
@@ -58,9 +62,13 @@ public class Tehtava implements Serializable {
     public String getKuvaus() {
         return kuvaus;
     }
+    
+    public String getNimi() {
+        return nimi;
+    }
 
     public void setId(Long id) {
-        this.tehtavaid = id;
+        this.muistioid = id;
     }
     
     public void setKategoria(Long id) {
@@ -79,21 +87,25 @@ public class Tehtava implements Serializable {
         this.kuvaus = kuvaus;
     }
     
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (tehtavaid != null ? tehtavaid.hashCode() : 0);
+        hash += (muistioid != null ? muistioid.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tehtava)) {
+        if (!(object instanceof Muistio)) {
             return false;
         }
-        Tehtava other = (Tehtava) object;
-        if ((this.tehtavaid == null && other.tehtavaid != null) || (this.tehtavaid != null && !this.tehtavaid.equals(other.tehtavaid))) {
+        Muistio other = (Muistio) object;
+        if ((this.muistioid == null && other.muistioid != null) || (this.muistioid != null && !this.muistioid.equals(other.muistioid))) {
             return false;
         }
         return true;
@@ -101,7 +113,7 @@ public class Tehtava implements Serializable {
 
     @Override
     public String toString() {
-        return "MuistilistaPackage.NewEntity[ id=" + tehtavaid + " ]";
+        return "MuistilistaPackage.NewEntity[ id=" + muistioid + " ]";
     }
     
 }
