@@ -56,14 +56,19 @@ public class Tietokanta {
     
     public List<Muistio> getTehtavat() {
         EntityManager em = getEntityManager();
-        return em.createQuery("SELECT u FROM Tehtava u").getResultList();
+        return em.createQuery("SELECT u FROM Muistio u").getResultList();
+    }
+    
+    public List<Kategoria> getKategoria() {
+        EntityManager em = getEntityManager();
+        return em.createQuery("SELECT u FROM Kategoria u").getResultList();
     }
     
     public Long getKategorId(String nimi) {
         EntityManager em = getEntityManager();
-        List<Kategoria> lista=em.createQuery("SELECT u FROM Tehtava u").getResultList();
+        List<Kategoria> lista=em.createQuery("SELECT u FROM Kategoria u").getResultList();
         for (int i=0; lista.size()>i; i++) {
-            if (lista.get(i).getNimi().equalsIgnoreCase(nimi)) {
+            if (lista.get(i).getNimi().equals(nimi)) {
                 return lista.get(i).getId();
             }
         }

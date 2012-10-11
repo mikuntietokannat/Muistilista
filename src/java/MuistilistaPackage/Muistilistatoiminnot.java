@@ -24,7 +24,7 @@ public class Muistilistatoiminnot extends HttpServlet {
            request.setAttribute("kayttaja", kayttaja);
            return true;
         }
-        request.setAttribute("viesti", "Kirjaudu sisään");
+        request.setAttribute("viesti", "istuntosi katkesi, kirjaudu sisään uudelleen");
         sivuSiirto("index.jsp", request, response);
         return false;
     }

@@ -17,8 +17,13 @@
         <h3> ${viesti} </h3>
         
         <form name="uusi muistio"
-              action="${pageContext.request.contextPath}/uusitehtava.jsp">
+              action="${pageContext.request.contextPath}/uusimuistio" method="post">
             <input type="submit" value="Luo uusi muistio" />
+        </form>
+            
+        <form name="kirjaudu ulos"
+              action="${pageContext.request.contextPath}/Kirjautumistarkistus" method="get">
+            <input type="submit" value="Kirjaudu ulos" />
         </form>
         
         <br/> 

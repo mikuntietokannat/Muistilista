@@ -42,7 +42,7 @@ public class LuoMuokkaaMuistio extends Muistilistatoiminnot {
             kategorid = kategoria.getId();
         }
         else {
-            kategorid = db.getKategorId(nimi);
+            kategorid = db.getKategorId(kat);
             
         }
         db.lisaaMuistio(new Muistio(kategorid, kayttaja.getId(), tarkeys, teksti, nimi));
