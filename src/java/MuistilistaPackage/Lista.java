@@ -19,17 +19,24 @@ public class Lista extends Muistilistatoiminnot {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
         if (!sessiotarkistus(request, response)) {
             return;
-        }
+        }        
         sivuSiirto("lista.jsp", request, response);
+        */
+        doPost(request, response);
     }
   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (!sessiotarkistus(request, response)) {
             return;
-        }        
+        }
+        HttpSession session = request.getSession(false);
+        Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja");
+        List<Muistio> muistiolista = db.getMuistiot(kayttaja.getId());
+        request.setAttribute("muistiolista", muistiolista);
         sivuSiirto("lista.jsp", request, response);
     }
 

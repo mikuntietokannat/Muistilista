@@ -51,24 +51,28 @@ public class Tietokanta {
     }
     
     public Kayttaja tunnistaKayttaja(String tunnus, String salasana) {
-        return null;  // datahaku TEE!!!!!!!!!!!!!!!!!!!!!!!!!11
+        return null;  // datahaku tee?
     }
     
-    public List<Muistio> getTehtavat() {
+    public List<Muistio> getMuistiot(long userid) {
         EntityManager em = getEntityManager();
-        return em.createQuery("SELECT u FROM Muistio u").getResultList();
+        return em.createQuery("SELECT u FROM Muistio u WHERE u.userid = " + userid).getResultList();
+        
+        //   return em.createQuery("SELECT u FROM Muistio WHERE USERID=" + userid).getResultList(); EI?? WTF!?!?
+        
+        //   SELECT e FROM Employee e WHERE e.name = :name")
     }
     
-    public List<Kategoria> getKategoria() {
+    public List<Kategoria> getKategoria(long userid) {
         EntityManager em = getEntityManager();
-        return em.createQuery("SELECT u FROM Kategoria u").getResultList();
+        return em.createQuery("SELECT u FROM Kategoria u WHERE u.userid = " + userid).getResultList();
     }
     
     public Long getKategorId(String nimi) {
         EntityManager em = getEntityManager();
         List<Kategoria> lista=em.createQuery("SELECT u FROM Kategoria u").getResultList();
         for (int i=0; lista.size()>i; i++) {
-            if (lista.get(i).getNimi().equals(nimi)) {
+            if (lista.get(i).getNimi().equalsIgnoreCase(nimi)) {
                 return lista.get(i).getId();
             }
         }

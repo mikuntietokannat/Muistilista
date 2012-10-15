@@ -27,15 +27,30 @@
         </form>
         
         <br/> 
+        
+        <c:choose>
+            <c:when test="${empty muistiolista}">
+                <p>Sinulla ei ole yhtään muistiota</p>
+            </c:when>
+            <c:otherwise>
+                <ul>
+                    <c:forEach var="Muistio" items="${muistiolista}">
+
+                        <li>${Muistio.id} > ${Muistio.nimi}<a href="/katso">[katso]</a></li>
+
+                    </c:forEach>
+                </ul>  
+            </c:otherwise>
+        </c:choose>
                 
-        <c:forEach var="kayttaja" items="${lista}">
-            ${kayttaja.tunnus} <br/>
-        </c:forEach>
+        <br/> 
             
     </body>
 </html>
 
    <!--     
-
+    <li><a href="lista?lista=${muistio.id}">${muistio.nimi}</a></li>
+   
+   <li>${Muistio.id}>${Muistio.nimi}<a href="muistio">[katso]</a></li>
    
     -->

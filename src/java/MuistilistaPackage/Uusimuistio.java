@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,7 +20,9 @@ public class Uusimuistio extends Muistilistatoiminnot {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //request.setAttribute("viesti", "joku viesti");
         
-        List<Kategoria> kategorialista = db.getKategoria();
+        HttpSession session = request.getSession(false);
+        Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja");       
+        List<Kategoria> kategorialista = db.getKategoria(kayttaja.getId());
         request.setAttribute("kategorialista", kategorialista);
         sivuSiirto("uusitehtava.jsp", request, response); 
     }

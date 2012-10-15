@@ -36,8 +36,8 @@ public class LuoMuokkaaMuistio extends Muistilistatoiminnot {
         HttpSession session = request.getSession(false);
         Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja");
         
-        if (!kat_uusi.equals("") || !kat_uusi.equals(" ") || !kat_uusi.equals("  ") ) {
-            Kategoria kategoria = new Kategoria(kayttaja.getId(), nimi);
+        if (!kat_uusi.equals("") && !kat_uusi.equals(" ") && !kat_uusi.equals("  ") ) {
+            Kategoria kategoria = new Kategoria(kayttaja.getId(), kat_uusi);
             db.lisaaKategoria(kategoria);
             kategorid = kategoria.getId();
         }
