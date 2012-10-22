@@ -26,24 +26,27 @@ public class LuoMuokkaaMuistio extends Muistilistatoiminnot {
         if (!(sessiotarkistus(request, response))) {
             return;
         }
+        HttpSession session = request.getSession(false);
+        Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja");
+        
         String nimi=request.getParameter("nimi");
         int tarkeys=Integer.parseInt(request.getParameter("tarkeys"));        
         String teksti=request.getParameter("teksti"); 
-        String kat=request.getParameter("kategoria");
         String kat_uusi=request.getParameter("kategoria_uusi");
         long kategorid;
-        
-        HttpSession session = request.getSession(false);
-        Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja");
         
         if (!kat_uusi.equals("") && !kat_uusi.equals(" ") && !kat_uusi.equals("  ") ) {
             Kategoria kategoria = new Kategoria(kayttaja.getId(), kat_uusi);
             db.lisaaKategoria(kategoria);
             kategorid = kategoria.getId();
-        }
-        else {
-            kategorid = db.getKategorId(kat);
-            
+        }       
+        else if (request.getParameter("kategoria")!=null && !request.getParameter("kategoria").equals("")) {     //TOIMIIKO!?!?!?
+            kategorid=Long.parseLong(request.getParameter("kategoria"));
+        }                         
+        else {          
+            Kategoria kategoria = new Kategoria(kayttaja.getId(), "Yleinen [oletus]");
+            db.lisaaKategoria(kategoria);
+            kategorid = kategoria.getId();         
         }
         db.lisaaMuistio(new Muistio(kategorid, kayttaja.getId(), tarkeys, teksti, nimi));
         sivuSiirto("/muistio",request, response);
@@ -55,5 +58,6 @@ public class LuoMuokkaaMuistio extends Muistilistatoiminnot {
         if (!(sessiotarkistus(request, response))) {
             return;
         }
+        doPost(request, response);
     }
 }

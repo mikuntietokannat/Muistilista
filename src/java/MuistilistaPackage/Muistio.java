@@ -51,7 +51,7 @@ public class Muistio implements Serializable {
         return kategorid;
     }
     
-    public int getTarkeus() {
+    public int getTarkeys() {
         return tarkeys;
     }
     

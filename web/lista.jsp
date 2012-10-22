@@ -28,6 +28,15 @@
         
         <br/> 
         
+        <form name="jarjesta" 
+              action="${pageContext.request.contextPath}/muistio" method="post">
+            <select name="jarjestus">
+                <option value>Nimi</option>                              
+                <option value>Tärkeys</option>  
+            </select>
+            <input type="submit" value="Järjestä uudelleen" />
+        </form>
+        
         <c:choose>
             <c:when test="${empty muistiolista}">
                 <p>Sinulla ei ole yhtään muistiota</p>
@@ -35,9 +44,7 @@
             <c:otherwise>
                 <ul>
                     <c:forEach var="Muistio" items="${muistiolista}">
-
-                        <li>${Muistio.id} > ${Muistio.nimi}<a href="/katso">[katso]</a></li>
-
+                        <li>${Muistio.nimi} >${Muistio.tarkeys}<a href="uusimuistio?id=${Muistio.id}">[katso]</a></li> 
                     </c:forEach>
                 </ul>  
             </c:otherwise>
@@ -49,8 +56,10 @@
 </html>
 
    <!--     
-    <li><a href="lista?lista=${muistio.id}">${muistio.nimi}</a></li>
+   <li><a href="lista?lista=${muistio.id}">${muistio.nimi}</a></li>
    
    <li>${Muistio.id}>${Muistio.nimi}<a href="muistio">[katso]</a></li>
+   
+   <a href="uusimuistio?muistio=${Muistio.muistioid}">[katso]</a>
    
     -->

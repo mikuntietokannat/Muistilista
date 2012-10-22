@@ -9,16 +9,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${Muistio.nimi}</title>
+        <title>${muistio.nimi}</title>
     </head>
     <body>
         <br/> 
-        trolol tyhjä?
+        trolol tee tästä lomake ja laite VALUE=entiset arvot + nappula tallenna muutokset :)
         <br/> 
         
-        ${Muistio.kuvaus}
+        ${muistio.kuvaus}
         <br/> 
-        ${Muistio.tarkeys}
+        ${muistio.tarkeys}
+        <br/> 
+        ${muistio.kategoria}
         <br/> 
         
         <form name="Takaisin"

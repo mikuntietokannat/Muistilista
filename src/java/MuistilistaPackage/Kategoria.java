@@ -30,15 +30,15 @@ public class Kategoria implements Serializable {
     
     public Kategoria() {
         
-    }
+    } 
     
     public Kategoria(Long userid, String nimi, Long ylakategoria) {
         this.userid=userid;this.nimi=nimi;this.ylakategoria=ylakategoria;
     }
     
-    //Temp, kunnes yläkategoriafunktio käyttöön
+    //Temp, kunnes (jos) yläkategoriafunktio käyttöön
     public Kategoria(Long userid, String nimi) {
-        this.userid=userid;this.nimi=nimi;this.ylakategoria=(long)-999;
+        this.userid=userid;this.nimi=nimi;this.ylakategoria=null;
     }
 
     public Long getId() {
