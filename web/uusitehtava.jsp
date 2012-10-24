@@ -16,7 +16,7 @@
         <h1>${viesti}</h1>
         <form action="${pageContext.request.contextPath}/muokkaa"
               method="get">
-            Nimi:        <input style="margin-left: 5em" type="text" name="nimi" maxlength=30 /> <br/>   
+            Nimi:        <input style="margin-left: 5em" type="text" name="nimi" maxlength=30 > <br/>   
             
             Kategoria: 
             <select name="kategoria">
@@ -31,19 +31,17 @@
             <input type="radio" name=tarkeys VALUE="3">3
             <input type="radio" name=tarkeys VALUE="4">4 
             <input type="radio" name=tarkeys VALUE="5">5 <br/>
-            <textarea name=teksti rows=8 cols=80>
+            <textarea name=teksti rows=16 cols=120 maxlength="5000">
 muistiinpanosi
             </textarea> <br/> 
             <input type="submit" value="Luo" />
         </form>
             
         <br/> 
-        ____________________________________________________________________
-        <br/> 
-            
+        
         <form name="Takaisin"
             action="${pageContext.request.contextPath}/muistio">
-            <input type="submit" value="Takaisin" />
+            <input type="submit" value="Peruuta" />
         </form>
             
     </body>

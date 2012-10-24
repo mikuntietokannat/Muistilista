@@ -30,11 +30,11 @@
         
         <form name="jarjesta" 
               action="${pageContext.request.contextPath}/muistio" method="post">
-            <select name="jarjestus">
-                <option value>Nimi</option>                              
-                <option value>Tärkeys</option>  
-            </select>
             <input type="submit" value="Järjestä uudelleen" />
+            <select name="jarjesta">
+                <option value="nimi">Nimi </option>                              
+                <option value="tarkeys">Tärkeys </option> 
+            </select>          
         </form>
         
         <c:choose>
@@ -55,11 +55,14 @@
     </body>
 </html>
 
-   <!--     
+   <!--    
+  <<< ${lista.oletus ? 'checked="checked"' : ''}
    <li><a href="lista?lista=${muistio.id}">${muistio.nimi}</a></li>
    
    <li>${Muistio.id}>${Muistio.nimi}<a href="muistio">[katso]</a></li>
    
    <a href="uusimuistio?muistio=${Muistio.muistioid}">[katso]</a>
    
-    -->
+   
+   
+    --> 
