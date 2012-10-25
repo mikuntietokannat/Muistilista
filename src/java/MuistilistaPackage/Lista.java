@@ -2,9 +2,7 @@ package MuistilistaPackage;
 
 import java.io.IOException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,6 +35,16 @@ public class Lista extends Muistilistatoiminnot {
         Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja");
         List<Muistio> muistiolista = db.getMuistiot(kayttaja.getId());
         request.setAttribute("muistiolista", muistiolista);
+        
+        String jarjestys;
+        try {
+            jarjestys=request.getParameter("setjarjestys"); 
+        } catch (NullPointerException e) {
+            jarjestys="tarkeys";
+            //jarjestys="nimi";
+        }
+        request.setAttribute("jarjesta", jarjestys); // lista jspssä kysy variable "jarjesta"
+        
         sivuSiirto("lista.jsp", request, response);
     }
 

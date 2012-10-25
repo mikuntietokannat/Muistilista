@@ -31,9 +31,15 @@
         <form name="jarjesta" 
               action="${pageContext.request.contextPath}/muistio" method="post">
             <input type="submit" value="Järjestä uudelleen" />
-            <select name="jarjesta">
-                <option value="nimi">Nimi </option>                              
-                <option value="tarkeys">Tärkeys </option> 
+            <select name="setjarjestys" multiple="multiple">              <!--- POISTA multiple jos ei cräshää --->
+                <c:if test="${jarjesta==tarkeys}">
+                    <option value="nimi">Nimi </option>                              
+                    <option value="tarkeys" selected="selected">Tärkeys </option>                           
+                </c:if>
+                <c:if test="${jarjesta==nimi}">
+                    <option value="nimi" selected="selected">Nimi </option>                              
+                    <option value="tarkeys">Tärkeys </option>                           
+                </c:if>                   
             </select>          
         </form>
         

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Kategoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long kategorid;     //pkey
     
+   // @ManyToOne//(cascade = CascadeType.MERGE)
     @JoinColumn
     private Long userid;        //fkey
     

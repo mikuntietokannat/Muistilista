@@ -17,41 +17,41 @@
         <br/> 
         <form action="${pageContext.request.contextPath}/muokkaa"
               method="post" name="muokkaus">
-            Nimi:<input type="text" name="nimi" maxlength=30 value="${Muistio.nimi}"> <br/>   
+            Nimi:<input type="text" name="nimi" maxlength=30 value="${muistio.nimi}"> <br/>   
             <textarea name=teksti rows=16 cols=120 maxlength="5000">
 ${muistio.kuvaus}
             </textarea>            
             <br/>                           
             Muuta tärkeyttä: 
-            <c:if test="${Muistio.tarkeys==1}">
+            <c:if test="${muistio.tarkeys==1}">
                 <input type="radio" name=tarkeys VALUE="1" CHECKED>1
                 <input type="radio" name=tarkeys VALUE="2">2
                 <input type="radio" name=tarkeys VALUE="3">3
                 <input type="radio" name=tarkeys VALUE="4">4 
                 <input type="radio" name=tarkeys VALUE="5">5 
             </c:if>
-            <c:if test="${Muistio.tarkeys==2}">
+            <c:if test="${muistio.tarkeys==2}">
                 <input type="radio" name=tarkeys VALUE="1">1
                 <input type="radio" name=tarkeys VALUE="2" CHECKED>2
                 <input type="radio" name=tarkeys VALUE="3">3
                 <input type="radio" name=tarkeys VALUE="4">4 
                 <input type="radio" name=tarkeys VALUE="5">5                                     
             </c:if>
-            <c:if test="${Muistio.tarkeys==3}">
+            <c:if test="${muistio.tarkeys==3}">
                 <input type="radio" name=tarkeys VALUE="1">1
                 <input type="radio" name=tarkeys VALUE="2">2
                 <input type="radio" name=tarkeys VALUE="3" CHECKED>3
                 <input type="radio" name=tarkeys VALUE="4">4 
                 <input type="radio" name=tarkeys VALUE="5">5                                     
             </c:if>
-            <c:if test="${Muistio.tarkeys==4}">
+            <c:if test="${muistio.tarkeys==4}">
                 <input type="radio" name=tarkeys VALUE="1">1
                 <input type="radio" name=tarkeys VALUE="2">2
                 <input type="radio" name=tarkeys VALUE="3">3
                 <input type="radio" name=tarkeys VALUE="4" CHECKED>4 
                 <input type="radio" name=tarkeys VALUE="5">5                                     
             </c:if>
-            <c:if test="${Muistio.tarkeys==5}">
+            <c:if test="${muistio.tarkeys==5}">
                 <input type="radio" name=tarkeys VALUE="1">1
                 <input type="radio" name=tarkeys VALUE="2">2
                 <input type="radio" name=tarkeys VALUE="3">3
@@ -61,28 +61,27 @@ ${muistio.kuvaus}
             <br/>
             Muuta kategoriaa: <select name="kategoria" >              
                 <c:forEach var="Kategoria" items="${kategorialista}">
-                    <c:if test="${Muistio.kategoria == Kategoria.id}">
+                    <c:if test="${muistio.kategoria == Kategoria.id}">
                          <option value="${Kategoria.id}" selected="selected"> ${Kategoria.nimi} </option>                        
-                    </c:if>                          
+                    </c:if>  
                 </c:forEach>                                        
                 <c:forEach var="Kategoria" items="${kategorialista}">
                     <option value="${Kategoria.id}">${Kategoria.nimi}  </option>                             
                 </c:forEach>
             </select>   
             <input type="text" name="kategoria_uusi" maxlength=30 />   
-            <br/>           
+            <br/> 
+            <input type="text" name="id" value="${muistio.id}" hidden="hidden"/>
             <input type="submit" value="Tallenna muutokset" />
         </form>
             
         <br/>
-        <input type="submit" value="Tallenna muutokset" form="muokkaus"/>
         <form name="Takaisin"
             action="${pageContext.request.contextPath}/muistio">
             <input type="submit" value="Takaisin" />
         </form>
         <br/> 
         
-        ${muistio.kuvaus}
         <br/> 
         Tärkeys: ${muistio.tarkeys}
         <br/> 

@@ -1,12 +1,14 @@
 package MuistilistaPackage;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,9 +22,11 @@ public class Muistio implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long muistioid;     //pkey
     
+    //@ManyToOne//(cascade = CascadeType.MERGE)
     @JoinColumn
     private Long kategorid;     //fkey
     
+    //@ManyToOne//(cascade = CascadeType.MERGE)
     @JoinColumn
     private Long userid;        //fkey
     
@@ -36,7 +40,7 @@ public class Muistio implements Serializable {
     private String kuvaus;
     
     public Muistio() {
-        
+        //Älä käytä
     }
     
     public Muistio(long kategorid, long userid, int tarkeys, String kuvaus, String nimi) {
