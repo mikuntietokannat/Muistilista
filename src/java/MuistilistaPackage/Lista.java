@@ -35,8 +35,10 @@ public class Lista extends Muistilistatoiminnot {
         Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja");
         List<Muistio> muistiolista = db.getMuistiot(kayttaja.getId());
         request.setAttribute("muistiolista", muistiolista);
+        List<Kategoria> kategorialista = db.getKategoriat(kayttaja.getId());
+        request.setAttribute("kategorialista", kategorialista);
         
-        String jarjestys;
+        String jarjestys="tarkeys";
         try {
             jarjestys=request.getParameter("setjarjestys"); 
         } catch (NullPointerException e) {

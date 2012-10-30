@@ -98,7 +98,7 @@ public class Tietokanta {
         //   SELECT e FROM Employee e WHERE e.name = :name")
     }
     
-    public List<Kategoria> getKategoria(long userid) {
+    public List<Kategoria> getKategoriat(long userid) {
         EntityManager em = getEntityManager();
         return em.createQuery("SELECT u FROM Kategoria u WHERE u.userid = " + userid).getResultList();
     }

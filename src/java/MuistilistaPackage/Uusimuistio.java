@@ -23,7 +23,7 @@ public class Uusimuistio extends Muistilistatoiminnot {
         HttpSession session = request.getSession(false);
         Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja");
         
-        List<Kategoria> kategorialista = db.getKategoria(kayttaja.getId());
+        List<Kategoria> kategorialista = db.getKategoriat(kayttaja.getId());
         request.setAttribute("kategorialista", kategorialista);
                
         long muistioid=Long.parseLong(request.getParameter("id"));
@@ -42,7 +42,7 @@ public class Uusimuistio extends Muistilistatoiminnot {
         HttpSession session = request.getSession(false);
         Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja"); 
         
-        List<Kategoria> kategorialista = db.getKategoria(kayttaja.getId());
+        List<Kategoria> kategorialista = db.getKategoriat(kayttaja.getId());
         request.setAttribute("kategorialista", kategorialista);
         
         sivuSiirto("uusitehtava.jsp", request, response);
