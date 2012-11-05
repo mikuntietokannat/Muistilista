@@ -22,7 +22,7 @@ public class Muistio implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long muistioid;     //pkey
     
-    //@ManyToOne//(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn
     private Long kategorid;     //fkey
     

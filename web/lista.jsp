@@ -32,13 +32,13 @@
               action="${pageContext.request.contextPath}/muistio" method="post">
             <input type="submit" value="Järjestä uudelleen" />
             <select name="setjarjestys" multiple="multiple">              <!-- POISTA multiple jos ei cräshää -->
-                <c:if test="${jarjesta==tarkeys}">
-                    <option value="nimi">Nimi </option>                              
-                    <option value="tarkeys" selected="selected">Tärkeys </option>                           
+                <c:if test="${jarjesta==2}">
+                    <option value=1 >Nimi </option>                              
+                    <option value=2 selected="selected">Tärkeys </option>                           
                 </c:if>
-                <c:if test="${jarjesta==nimi}">
-                    <option value="nimi" selected="selected">Nimi </option>                              
-                    <option value="tarkeys">Tärkeys </option>                           
+                <c:if test="${jarjesta==1}">
+                    <option value=1 selected="selected">Nimi </option>                              
+                    <option value=2>Tärkeys </option>                           
                 </c:if>                   
             </select>          
         </form>
@@ -63,7 +63,7 @@
             <c:otherwise>
                 <ul>
                     <c:forEach var="Muistio" items="${muistiolista}">
-                        <li><a href="uusimuistio?id=${Muistio.id}">${Muistio.nimi} Tärkeys: ${Muistio.tarkeys} Kategoria: ${Muistio.kategoria}</a></li> 
+                        <li><a href="uusimuistio?id=${Muistio.id}">${Muistio.nimi} [Tärkeys: ${Muistio.tarkeys}] [Kategoria: ${Muistio.kategoria}]</a></li> 
                     </c:forEach>
                 </ul>  
             </c:otherwise>

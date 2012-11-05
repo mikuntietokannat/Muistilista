@@ -38,12 +38,11 @@ public class Lista extends Muistilistatoiminnot {
         List<Kategoria> kategorialista = db.getKategoriat(kayttaja.getId());
         request.setAttribute("kategorialista", kategorialista);
         
-        String jarjestys="tarkeys";
+        int jarjestys;
         try {
-            jarjestys=request.getParameter("setjarjestys"); 
+            jarjestys=Integer.parseInt(request.getParameter("setjarjestys")); 
         } catch (NullPointerException e) {
-            jarjestys="tarkeys";
-            //jarjestys="nimi";
+            jarjestys=2;
         }
         request.setAttribute("jarjesta", jarjestys); // lista jspssä kysy variable "jarjesta"
         

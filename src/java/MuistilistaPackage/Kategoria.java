@@ -1,13 +1,15 @@
 package MuistilistaPackage;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -20,9 +22,15 @@ public class Kategoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long kategorid;     //pkey
     
-   // @ManyToOne//(cascade = CascadeType.MERGE)
     @JoinColumn
     private Long userid;        //fkey
+    
+    @OneToMany
+    @JoinTable(joinColumns = {
+        @JoinColumn(name = "kategoria_id")},
+    inverseJoinColumns = {
+        @JoinColumn(name = "muistio_id")})
+    private List<Muistio> muistiot;
     
     @Column
     private String nimi;
@@ -43,6 +51,10 @@ public class Kategoria implements Serializable {
         this.userid=userid;this.nimi=nimi;this.ylakategoria=null;
     }
 
+    public List<Muistio> getMuistiot() {
+        return muistiot;
+    }
+    
     public Long getId() {
         return kategorid;
     }
