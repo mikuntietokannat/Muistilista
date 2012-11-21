@@ -24,7 +24,7 @@ public class Muistio implements Serializable {
     
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn
-    private Long kategorid;     //fkey
+    private Kategoria kategoria;     //fkey
     
     //@ManyToOne//(cascade = CascadeType.MERGE)
     @JoinColumn
@@ -43,16 +43,17 @@ public class Muistio implements Serializable {
         //Älä käytä
     }
     
-    public Muistio(long kategorid, long userid, int tarkeys, String kuvaus, String nimi) {
-        this.kategorid=kategorid; this.userid=userid; this.tarkeys=tarkeys; this.kuvaus=kuvaus; this.nimi=nimi;
+    public Muistio(Kategoria kategoria, long userid, int tarkeys, String kuvaus, String nimi) {
+        this.userid=userid; this.tarkeys=tarkeys; this.kuvaus=kuvaus; this.nimi=nimi;
+        this.kategoria=kategoria; 
     }
 
     public Long getId() {
         return muistioid;
     }
     
-    public Long getKategoria() {
-        return kategorid;
+    public Kategoria getKategoria() {
+        return kategoria;
     }
     
     public int getTarkeys() {
@@ -75,9 +76,9 @@ public class Muistio implements Serializable {
         this.muistioid = id;
     }
     
-    public void setKategoria(Long id) {
-        this.kategorid = id;
-    }
+    public void setKategoria(Kategoria kategoria) {
+        this.kategoria = kategoria;
+    } 
     
     public void setUserId(Long id) {
         this.userid = id;

@@ -16,41 +16,14 @@
         <h1>Muistiot</h1>
         <h3> ${viesti} </h3>
         
-        <form name="uusi muistio"
-              action="${pageContext.request.contextPath}/uusimuistio" method="post">
-            <input type="submit" value="Luo uusi muistio" />
-        </form>
-            
-        <form name="kirjaudu ulos"
-              action="${pageContext.request.contextPath}/Kirjautumistarkistus" method="get">
-            <input type="submit" value="Kirjaudu ulos" />
-        </form>
-        
-        <br/> 
-        
-        <form name="jarjesta" 
-              action="${pageContext.request.contextPath}/muistio" method="post">
-            <input type="submit" value="Järjestä uudelleen" />
-            <select name="setjarjestys" multiple="multiple">              <!-- POISTA multiple jos ei cräshää -->
-                <c:if test="${jarjesta==2}">
-                    <option value=1 >Nimi </option>                              
-                    <option value=2 selected="selected">Tärkeys </option>                           
-                </c:if>
-                <c:if test="${jarjesta==1}">
-                    <option value=1 selected="selected">Nimi </option>                              
-                    <option value=2>Tärkeys </option>                           
-                </c:if>                   
-            </select>          
-        </form>
-        
         <c:choose>
             <c:when test="${empty muistiolista}">
-                <p>Sinulla ei ole yhtään muistiota</p>
+                <p>Sinulla ei ole yhtään muistiota (kat)</p>
             </c:when>
             <c:otherwise>
                 <ul>
                     <c:forEach var="Kategoria" items="${kategorialista}">
-                        <li><a href="uusimuistio?id=${Muistio.id}">${Muistio.nimi} Tärkeys: ${Muistio.tarkeys} Kategoria: ${Muistio.kategoria}</a></li> 
+                        <li><a href="uusimuistio?id=${Muistio.id}">${Kategoria.nimi} Tärkeys: ${Muistio.tarkeys} Kategoria: ${Muistio.kategoria}</a></li> 
                     </c:forEach>
                 </ul>  
             </c:otherwise>
@@ -63,13 +36,38 @@
             <c:otherwise>
                 <ul>
                     <c:forEach var="Muistio" items="${muistiolista}">
-                        <li><a href="uusimuistio?id=${Muistio.id}">${Muistio.nimi} [Tärkeys: ${Muistio.tarkeys}] [Kategoria: ${Muistio.kategoria}]</a></li> 
+                        <li>${Muistio.nimi} [Tärkeys: ${Muistio.tarkeys}] [Kategoria: ${Muistio.kategoria.nimi}]<a href="uusimuistio?id=${Muistio.id}"> Avaa </a></li> 
                     </c:forEach>
                 </ul>  
             </c:otherwise>
         </c:choose>
                 
+        <form name="jarjesta" 
+              action="${pageContext.request.contextPath}/muistio" method="post">
+            <input type="submit" value="Järjestä uudelleen" />
+            <select name="setjarjestys">              
+                <c:if test="${jarjesta==2}">
+                    <option value=1 >Nimi </option>                              
+                    <option value=2 selected="selected">Tärkeys </option>                           
+                </c:if>
+                <c:if test="${jarjesta==1}">
+                    <option value=1 selected="selected">Nimi </option>                              
+                    <option value=2>Tärkeys </option>                           
+                </c:if>                   
+            </select>          
+        </form>
+        
+        <form name="uusi muistio"
+              action="${pageContext.request.contextPath}/uusimuistio" method="post">
+            <input type="submit" value="Luo uusi muistio" />
+        </form>
+         
         <br/> 
+            
+        <form name="kirjaudu ulos"
+              action="${pageContext.request.contextPath}/Kirjautumistarkistus" method="get">
+            <input type="submit" value="Kirjaudu ulos" />
+        </form>
             
     </body>
 </html>

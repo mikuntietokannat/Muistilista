@@ -26,9 +26,9 @@
             </select>   <br/>   
             
             Uusi kategoria:   <input type="text" name="kategoria_uusi" maxlength=30 /> <br/>    
-            Tärkeysaste: <input type="radio" name=tarkeys VALUE="1" CHECKED>1  
+            Tärkeysaste: <input type="radio" name=tarkeys VALUE="1">1  
             <input type="radio" name=tarkeys VALUE="2">2
-            <input type="radio" name=tarkeys VALUE="3">3
+            <input type="radio" name=tarkeys VALUE="3" CHECKED>3
             <input type="radio" name=tarkeys VALUE="4">4 
             <input type="radio" name=tarkeys VALUE="5">5 <br/>
             <textarea name=teksti rows=16 cols=120 maxlength="5000">

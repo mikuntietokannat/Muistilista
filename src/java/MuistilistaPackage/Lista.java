@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
  * @author miimaija
  */
 public class Lista extends Muistilistatoiminnot {
-    Tietokanta db=new Tietokanta();
     //kutsutaan "/muistio" liitteellä
     
     @Override
@@ -41,7 +40,7 @@ public class Lista extends Muistilistatoiminnot {
         int jarjestys;
         try {
             jarjestys=Integer.parseInt(request.getParameter("setjarjestys")); 
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException e) {
             jarjestys=2;
         }
         request.setAttribute("jarjesta", jarjestys); // lista jspssä kysy variable "jarjesta"

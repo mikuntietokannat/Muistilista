@@ -25,9 +25,9 @@ public class LuoMuokkaaMuistio extends Muistilistatoiminnot {
         String nimi=nimiTarkistus(request.getParameter("nimi"));
         int tarkeys=Integer.parseInt(request.getParameter("tarkeys"));        
         String teksti=request.getParameter("teksti"); 
-        long kategorid=kategoriaTarkistus(request);
+        Kategoria kategoria=kategoriaTarkistus(request);
         
-        db.lisaaMuistio(new Muistio(kategorid, kayttaja.getId(), tarkeys, teksti, nimi));
+        db.lisaaMuistio(new Muistio(kategoria, kayttaja.getId(), tarkeys, teksti, nimi));
         request.setAttribute("viesti", "Muistio '" + nimi + "' luotu");
         sivuSiirto("/muistio",request, response);
     }
@@ -45,35 +45,34 @@ public class LuoMuokkaaMuistio extends Muistilistatoiminnot {
         int tarkeys=Integer.parseInt(request.getParameter("tarkeys"));        
         String teksti=request.getParameter("teksti"); 
         long muistioid=Long.parseLong(request.getParameter("id"));
-        long kategorid=kategoriaTarkistus(request);
+        Kategoria kategoria=kategoriaTarkistus(request);
       
         //db.muokkaaMuistio2(muistioid, kategorid, kayttaja.getId(), nimi,tarkeys, teksti);
         Muistio muokattava=db.getMuistio(muistioid, kayttaja.getId());
-        muokattava.setKategoria(kategorid);muokattava.setKuvaus(teksti);muokattava.setTarkeys(tarkeys);muokattava.setNimi(nimi);
+        muokattava.setKategoria(kategoria);muokattava.setKuvaus(teksti);muokattava.setTarkeys(tarkeys);muokattava.setNimi(nimi);
         db.muokkaaMuistio(muokattava);
         request.setAttribute("viesti", "Muutokset muistioon '" + nimi + "' tallennettu");
         sivuSiirto("/muistio",request, response);
     }
     
-    protected long kategoriaTarkistus(HttpServletRequest request) {
+    protected Kategoria kategoriaTarkistus(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         Kayttaja kayttaja=(Kayttaja)session.getAttribute("kayttaja");
-        long kategorid;
+        Kategoria kategoria;
         
         if (!request.getParameter("kategoria_uusi").equals("") && !request.getParameter("kategoria_uusi").equals(" ") && !request.getParameter("kategoria_uusi").equals("  ") ) {
-            Kategoria kategoria = new Kategoria(kayttaja.getId(), request.getParameter("kategoria_uusi"));
+            kategoria = new Kategoria(kayttaja.getId(), request.getParameter("kategoria_uusi"));
             db.lisaaKategoria(kategoria);
-            kategorid = kategoria.getId();
         }       
         else if (request.getParameter("kategoria")!=null && !request.getParameter("kategoria").equals("")) {     
-            kategorid=Long.parseLong(request.getParameter("kategoria"));
+            long kategorid=Long.parseLong(request.getParameter("kategoria"));
+            kategoria=db.getKategoria(kategorid);
         }
         else {          
-            Kategoria kategoria = new Kategoria(kayttaja.getId(), "Yleinen [oletus]");
-            db.lisaaKategoria(kategoria);
-            kategorid = kategoria.getId();         
+            kategoria = new Kategoria(kayttaja.getId(), "Yleinen [oletus]");
+            db.lisaaKategoria(kategoria);       
         }
-        return kategorid;
+        return kategoria;
     }
     
     protected String nimiTarkistus(String nimi) {

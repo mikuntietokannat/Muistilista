@@ -28,6 +28,10 @@
         <servlet-name>Uusimuistio</servlet-name>
         <servlet-class>MuistilistaPackage.Uusimuistio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Poista</servlet-name>
+        <servlet-class>MuistilistaPackage.Poista</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Lista</servlet-name>
         <url-pattern>/muistio</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>Uusimuistio</servlet-name>
         <url-pattern>/uusimuistio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Poista</servlet-name>
+        <url-pattern>/poista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

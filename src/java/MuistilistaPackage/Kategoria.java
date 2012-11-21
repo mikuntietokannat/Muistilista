@@ -27,10 +27,15 @@ public class Kategoria implements Serializable {
     
     @OneToMany
     @JoinTable(joinColumns = {
-        @JoinColumn(name = "kategoria_id")},
+        @JoinColumn(name = "kategorid")},
     inverseJoinColumns = {
-        @JoinColumn(name = "muistio_id")})
+        @JoinColumn(name = "muistiot")})
     private List<Muistio> muistiot;
+      
+    //@JoinTable(joinColumns = {
+    //    @JoinColumn(name = "kategoria_id")},
+    //inverseJoinColumns = {
+    //    @JoinColumn(name = "muistio_id")})
     
     @Column
     private String nimi;

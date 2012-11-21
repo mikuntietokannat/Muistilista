@@ -74,11 +74,36 @@ public class Tietokanta {
         em.getTransaction().commit();
     }
 
+    public void poistaMuistio(Muistio poisto) {
+        EntityManager em = getEntityManager();
+	
+        em.getTransaction().begin();
+        em.remove(em.merge(poisto));
+        em.getTransaction().commit();
+    }
+    
+    public void poistaKategoria(Kategoria poisto) {
+        EntityManager em = getEntityManager();
+	
+        em.getTransaction().begin();
+        em.remove(em.merge(poisto));
+        em.getTransaction().commit();
+    }
+    
     public List<Kayttaja> getKayttajat() {
         EntityManager em = getEntityManager();
         return em.createQuery("SELECT u FROM Kayttaja u").getResultList();
     }
        
+    public List<Muistio> getMuistiot(long userid) {
+        EntityManager em = getEntityManager();
+        return em.createQuery("SELECT u FROM Muistio u WHERE u.userid = " + userid).getResultList();
+        
+        //   return em.createQuery("SELECT u FROM Muistio WHERE USERID=" + userid).getResultList(); EI?? WTF!?!?
+        
+        //   SELECT e FROM Employee e WHERE e.name = :name")
+    }
+    
     public Muistio getMuistio(long muistioid, long userid) {
         List<Muistio> lista=getMuistiot(userid);
         for (int i=0;lista.size()>i; i++) {
@@ -89,13 +114,17 @@ public class Tietokanta {
         return null;  //Ei pitäisi olla mahdollista, id on haettu alunperin db:n kautta, joten aina löytyy. 
     }
     
-    public List<Muistio> getMuistiot(long userid) {
+    public Kategoria getKategoria(long kategorid) {
+        Kategoria apu;
         EntityManager em = getEntityManager();
-        return em.createQuery("SELECT u FROM Muistio u WHERE u.userid = " + userid).getResultList();
-        
-        //   return em.createQuery("SELECT u FROM Muistio WHERE USERID=" + userid).getResultList(); EI?? WTF!?!?
-        
-        //   SELECT e FROM Employee e WHERE e.name = :name")
+        List<Kategoria> lista=em.createQuery("SELECT u FROM Kategoria u").getResultList(); // Hyi miten hidas jos oikeasti käytössä
+        for (int i=0; lista.size()>i; i++) {
+            if (lista.get(i).getId().equals(kategorid)) {
+                apu=lista.get(i);
+                return apu;
+            }
+        }
+        return null; 
     }
     
     public List<Kategoria> getKategoriat(long userid) {

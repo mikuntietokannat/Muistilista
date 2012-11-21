@@ -61,7 +61,7 @@ ${muistio.kuvaus}
             <br/>
             Muuta kategoriaa: <select name="kategoria" >              
                 <c:forEach var="Kategoria" items="${kategorialista}">
-                    <c:if test="${muistio.kategoria == Kategoria.id}">
+                    <c:if test="${muistio.kategoria.id == Kategoria.id}">
                          <option value="${Kategoria.id}" selected="selected"> ${Kategoria.nimi} </option>                        
                     </c:if>  
                 </c:forEach>                                        
@@ -80,12 +80,17 @@ ${muistio.kuvaus}
             action="${pageContext.request.contextPath}/muistio">
             <input type="submit" value="Takaisin" />
         </form>
-        <br/> 
+        <br/><br/>
         
-        <br/> 
+        <form name="Poista muistio"
+            action="${pageContext.request.contextPath}/poista" method="get">
+            <input type="text" name="muistioid" value="${muistio.id}" hidden="hidden"/>
+            <input type="submit" value="Poista muistio" />
+        </form>
+        <br/><br/>        
+        
         Tärkeys: ${muistio.tarkeys}
         <br/> 
-        Kategoria: ${muistio.kategoria}
-        <br/>           
+        Kategoria: ${muistio.kategoria.nimi}         
     </body>
 </html>
