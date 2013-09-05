@@ -16,6 +16,7 @@
         <h1>Muistiot</h1>
         <h3> ${viesti} </h3>
         
+          <!-- 
         <c:choose>
             <c:when test="${empty muistiolista}">
                 <p>Sinulla ei ole yhtään muistiota (kat)</p>
@@ -28,7 +29,8 @@
                 </ul>  
             </c:otherwise>
         </c:choose>    
-            
+              -->  
+          
         <c:choose>
             <c:when test="${empty muistiolista}">
                 <p>Sinulla ei ole yhtään muistiota</p>

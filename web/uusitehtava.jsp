@@ -16,7 +16,7 @@
         <h1>${viesti}</h1>
         <form action="${pageContext.request.contextPath}/muokkaa"
               method="get">
-            Nimi:        <input style="margin-left: 5em" type="text" name="nimi" maxlength=30 > <br/>   
+            Nimi:       <input style="margin-left: 4em" type="text" name="nimi" maxlength=30 > <br/>   
             
             Kategoria: 
             <select name="kategoria">

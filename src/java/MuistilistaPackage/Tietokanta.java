@@ -1,50 +1,53 @@
 package MuistilistaPackage;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
 
 /**
  *
  * @author miimaija
  */
 public class Tietokanta {
-    
-    private EntityManagerFactory emf = null;
-
+    Connection yhteys = null;
+    PreparedStatement kysely = null;
+    ResultSet tulokset = null;
+ 
     public Tietokanta() {
-        emf = Persistence.createEntityManagerFactory("MuistilistaPU");
+                          
     }
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+    
+    protected void luoYhteys() throws SQLException {      
+        try { 
+            Class.forName("com.mysql.jdbc.Driver");
+            yhteys = DriverManager.getConnection("jdbc:mysql://localhost/muistilista?user=miimaija&password=u"); 
+        }catch (Exception e) {}             
     }
+    
+    protected void lopetaYhteys() throws SQLException {
+        try { tulokset.close(); } catch (Exception e) {  }
+        try { kysely.close(); } catch (Exception e) {  }
+        try { yhteys.close(); } catch (Exception e) {  }
+    }  
 
-    public void lisaaKayttaja(Kayttaja uusi) {
-        EntityManager em = getEntityManager();
-	
-        em.getTransaction().begin();	
-        em.persist(uusi);
-        em.getTransaction().commit();
+    public void lisaaKayttaja(Kayttaja uusi) throws SQLException {
+        luoYhteys();
+        PreparedStatement prepareStatement = yhteys.prepareStatement("INSERT INTO KAYTTAJA VALUES ("+ uusi.getId() +","+ uusi.getSalasana() +","+ uusi.getTunnus() +")");
+        ResultSet resultSet = prepareStatement.executeQuery();
+        lopetaYhteys();
     }
     
     public void lisaaMuistio(Muistio uusi) {
-        EntityManager em = getEntityManager();
-	
-        em.getTransaction().begin();	
-        em.persist(uusi);
-        em.getTransaction().commit();
+        
     }
     
      public void lisaaKategoria(Kategoria uusi) {
-        EntityManager em = getEntityManager();
-	
-        em.getTransaction().begin();	
-        em.persist(uusi);
-        em.getTransaction().commit();
+        
     }
     
      /*
@@ -67,32 +70,31 @@ public class Tietokanta {
     * */
     
     public void muokkaaMuistio(Muistio muokkaus) {
-        EntityManager em = getEntityManager();
-	
-        em.getTransaction().begin();	
-        em.merge(muokkaus);
-        em.getTransaction().commit();
+        
     }
 
     public void poistaMuistio(Muistio poisto) {
-        EntityManager em = getEntityManager();
-	
-        em.getTransaction().begin();
-        em.remove(em.merge(poisto));
-        em.getTransaction().commit();
+        
     }
     
     public void poistaKategoria(Kategoria poisto) {
-        EntityManager em = getEntityManager();
-	
-        em.getTransaction().begin();
-        em.remove(em.merge(poisto));
-        em.getTransaction().commit();
+        
     }
     
-    public List<Kayttaja> getKayttajat() {
-        EntityManager em = getEntityManager();
-        return em.createQuery("SELECT u FROM Kayttaja u").getResultList();
+    public List<Kayttaja> getKayttajat() throws SQLException {
+        List<Kayttaja> lista=new ArrayList<Kayttaja>();
+        luoYhteys();
+        PreparedStatement prepareStatement = yhteys.prepareStatement("SELECT * FROM Kayttaja");
+        
+        if (prepareStatement.execute()) {
+            ResultSet resultSet = prepareStatement.getResultSet();
+            while (resultSet.next()) {
+                lista.add(new Kayttaja(resultSet.getString("TUNNUS"),resultSet.getString("SALASANA"), resultSet.getLong("USERID")));
+            }
+        }
+        
+        lopetaYhteys();
+        return lista;
     }
        
     public List<Muistio> getMuistiot(long userid) {

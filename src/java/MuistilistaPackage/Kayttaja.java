@@ -11,17 +11,9 @@ import javax.persistence.Id;
  *
  * @author miimaija
  */
-@Entity
 public class Kayttaja implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userid;
-    
-    @Column
     private String tunnus;
-    
-    @Column
     private String salasana;
     
     public Kayttaja() {
@@ -29,6 +21,10 @@ public class Kayttaja implements Serializable {
     }
     
     public Kayttaja(String tunnus, String salasana) {
+        this.salasana=salasana;this.tunnus=tunnus;
+    }
+    
+    public Kayttaja(String tunnus, String salasana, Long userid) {
         this.salasana=salasana;this.tunnus=tunnus;
     }
 

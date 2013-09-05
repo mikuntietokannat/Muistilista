@@ -2,6 +2,7 @@ package MuistilistaPackage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
@@ -21,7 +22,7 @@ public class Lisaakayttaja extends Muistilistatoiminnot {
     boolean vapaa=true;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         //kutsutaan "/lisaaKayttaja" liitteellä
        
         vapaa=true;
@@ -64,10 +65,11 @@ public class Lisaakayttaja extends Muistilistatoiminnot {
      */
     @Override 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException  {
+        
+        try { processRequest(request, response);
+        }catch (Exception e) {  }
     }
-
     /** 
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
@@ -77,8 +79,10 @@ public class Lisaakayttaja extends Muistilistatoiminnot {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException  {
+        
+        try { processRequest(request, response);
+        }catch (Exception e) {  }
     }
 
     /** 

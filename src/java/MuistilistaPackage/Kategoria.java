@@ -17,30 +17,10 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Kategoria implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long kategorid;     //pkey
-    
-    @JoinColumn
     private Long userid;        //fkey
-    
-    @OneToMany
-    @JoinTable(joinColumns = {
-        @JoinColumn(name = "kategorid")},
-    inverseJoinColumns = {
-        @JoinColumn(name = "muistiot")})
     private List<Muistio> muistiot;
-      
-    //@JoinTable(joinColumns = {
-    //    @JoinColumn(name = "kategoria_id")},
-    //inverseJoinColumns = {
-    //    @JoinColumn(name = "muistio_id")})
-    
-    @Column
     private String nimi;
-    
-    @Column
     private Long ylakategoria;
     
     public Kategoria() {

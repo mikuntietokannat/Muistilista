@@ -14,29 +14,12 @@ import javax.persistence.ManyToOne;
  *
  * @author miimaija
  */
-@Entity
 public class Muistio implements Serializable {
-    private static final long serialVersionUID = 1L;  // tarpeellinen??
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long muistioid;     //pkey
-    
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn
     private Kategoria kategoria;     //fkey
-    
-    //@ManyToOne//(cascade = CascadeType.MERGE)
-    @JoinColumn
     private Long userid;        //fkey
-    
-    @Column
     private int tarkeys;
-    
-    @Column
     private String nimi;
-    
-    @Column
     private String kuvaus;
     
     public Muistio() {
