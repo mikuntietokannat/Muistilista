@@ -29,7 +29,7 @@ public class Tietokanta {
         }catch (Exception e) {}             
     }
     
-    protected void lopetaYhteys() throws SQLException {
+    protected void lopetaYhteys() {
         try { tulokset.close(); } catch (Exception e) {  }
         try { kysely.close(); } catch (Exception e) {  }
         try { yhteys.close(); } catch (Exception e) {  }
@@ -37,9 +37,11 @@ public class Tietokanta {
 
     public void lisaaKayttaja(Kayttaja uusi) throws SQLException {
         luoYhteys();
-        PreparedStatement prepareStatement = yhteys.prepareStatement("INSERT INTO KAYTTAJA VALUES ("+ uusi.getId() +","+ uusi.getSalasana() +","+ uusi.getTunnus() +")");
+        PreparedStatement prepareStatement = yhteys.prepareStatement("INSERT INTO Kayttaja VALUES (NULL,"+ uusi.getTunnus() +","+ uusi.getSalasana() +")");
         ResultSet resultSet = prepareStatement.executeQuery();
         lopetaYhteys();
+        
+        // null koska auto_increment luo IDn?????
     }
     
     public void lisaaMuistio(Muistio uusi) {
@@ -81,26 +83,31 @@ public class Tietokanta {
         
     }
     
-    public List<Kayttaja> getKayttajat() throws SQLException {
-        List<Kayttaja> lista=new ArrayList<Kayttaja>();
-        luoYhteys();
-        PreparedStatement prepareStatement = yhteys.prepareStatement("SELECT * FROM Kayttaja");
+    public List<Kayttaja> getKayttajat() {
         
-        if (prepareStatement.execute()) {
-            ResultSet resultSet = prepareStatement.getResultSet();
-            while (resultSet.next()) {
-                lista.add(new Kayttaja(resultSet.getString("TUNNUS"),resultSet.getString("SALASANA"), resultSet.getLong("USERID")));
-            }
+        try {
+            List<Kayttaja> lista=new ArrayList<Kayttaja>();
+            luoYhteys();
+            PreparedStatement prepareStatement = yhteys.prepareStatement("SELECT * FROM Kayttaja");
+
+            if (prepareStatement.execute()) {
+                ResultSet resultSet = prepareStatement.getResultSet();
+                while (resultSet.next()) {
+                    lista.add(new Kayttaja(resultSet.getString("userid"),resultSet.getString("tunnus"), resultSet.getLong("salasana")));
+                }
+            }    
+            lopetaYhteys();
+            return lista;
+
+        } catch (Exception e) {
+            return null;   // tätä ei tapahdu ja jos tapahtuu kaikki räjähtää
         }
-        
-        lopetaYhteys();
-        return lista;
     }
        
     public List<Muistio> getMuistiot(long userid) {
-        EntityManager em = getEntityManager();
-        return em.createQuery("SELECT u FROM Muistio u WHERE u.userid = " + userid).getResultList();
-        
+        //EntityManager em = getEntityManager();
+        //return em.createQuery("SELECT u FROM Muistio u WHERE u.userid = " + userid).getResultList();
+        return null;
         //   return em.createQuery("SELECT u FROM Muistio WHERE USERID=" + userid).getResultList(); EI?? WTF!?!?
         
         //   SELECT e FROM Employee e WHERE e.name = :name")
@@ -117,7 +124,7 @@ public class Tietokanta {
     }
     
     public Kategoria getKategoria(long kategorid) {
-        Kategoria apu;
+        /*Kategoria apu;
         EntityManager em = getEntityManager();
         List<Kategoria> lista=em.createQuery("SELECT u FROM Kategoria u").getResultList(); // Hyi miten hidas jos oikeasti käytössä
         for (int i=0; lista.size()>i; i++) {
@@ -126,16 +133,17 @@ public class Tietokanta {
                 return apu;
             }
         }
-        return null; 
+        */return null; 
     }
     
     public List<Kategoria> getKategoriat(long userid) {
-        EntityManager em = getEntityManager();
-        return em.createQuery("SELECT u FROM Kategoria u WHERE u.userid = " + userid).getResultList();
+        /*EntityManager em = getEntityManager();
+        return em.createQuery("SELECT u FROM Kategoria u WHERE u.userid = " + userid).getResultList(); */
+        return null;
     }
     
     public Long getKategorId(String nimi, Long userid) {
-        EntityManager em = getEntityManager();
+        /*EntityManager em = getEntityManager();
         List<Kategoria> lista=em.createQuery("SELECT u FROM Kategoria u").getResultList();
         for (int i=0; lista.size()>i; i++) {
             if (lista.get(i).getNimi().equalsIgnoreCase(nimi)) {    // haetaan nimi
@@ -145,7 +153,8 @@ public class Tietokanta {
             }
         }
         return (long)-999;    //Ei pitäisi olla mahdollista, nimi on haettu alunperin db:n kautta, joten aina löytyy
-    }
+        */ return null;
+    } 
 
 }
 

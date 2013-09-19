@@ -24,7 +24,7 @@ public class Kayttaja implements Serializable {
         this.salasana=salasana;this.tunnus=tunnus;
     }
     
-    public Kayttaja(String tunnus, String salasana, Long userid) {
+    public Kayttaja(String tunnus, String salasana, Long userid) { //eikäyttöä??
         this.salasana=salasana;this.tunnus=tunnus;
     }
 

@@ -15,25 +15,18 @@ import javax.persistence.OneToMany;
  *
  * @author miimaija
  */
-@Entity
 public class Kategoria implements Serializable {
-    private Long kategorid;     //pkey
-    private Long userid;        //fkey
+    private Long kategorid; //pkey
+    private Long userid; //fkey
     private List<Muistio> muistiot;
     private String nimi;
-    private Long ylakategoria;
     
     public Kategoria() {
         
-    } 
-    
-    public Kategoria(Long userid, String nimi, Long ylakategoria) {
-        this.userid=userid;this.nimi=nimi;this.ylakategoria=ylakategoria;
     }
-    
-    //Temp, kunnes (jos) yläkategoriafunktio käyttöön
+
     public Kategoria(Long userid, String nimi) {
-        this.userid=userid;this.nimi=nimi;this.ylakategoria=null;
+        this.userid=userid;this.nimi=nimi;
     }
 
     public List<Muistio> getMuistiot() {
@@ -51,10 +44,6 @@ public class Kategoria implements Serializable {
     public String getNimi() {
         return nimi;
     }
-    
-    public Long getYlakategoria() {
-        return ylakategoria;
-    }
 
     public void setId(Long id) {
         this.kategorid = id;
@@ -66,10 +55,6 @@ public class Kategoria implements Serializable {
     
     public void setnimi(String nimi) {
         this.nimi = nimi;
-    }
-    
-    public void setYlakategoria(Long id) {
-        this.ylakategoria = id;
     }
 
     @Override
